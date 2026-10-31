@@ -76,7 +76,9 @@ nav a.link:hover::after,nav a.link.active::after{width:100%}
 .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;margin-top:50px}
 .card{background:var(--cream);border-radius:var(--r);overflow:hidden;transition:.35s;display:flex;flex-direction:column;border:1px solid #ece8da}
 .card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(35,77,53,.16)}
-.card .img{background:linear-gradient(160deg,var(--sage-l),var(--sage));padding:22px}
+.card .img{background:linear-gradient(160deg,var(--sage-l),var(--sage));padding:0;display:flex;align-items:center;justify-content:center;min-height:220px;overflow:hidden}
+.card .img img{width:100%;height:220px;object-fit:cover;transition:.5s}
+.card:hover .img img{transform:scale(1.07)}
 .card .img svg{width:100%;height:auto;transition:.5s}
 .card:hover .img svg{transform:scale(1.07) rotate(-2deg)}
 .card .body{padding:22px;display:flex;flex-direction:column;flex:1}
@@ -391,6 +393,8 @@ footer a:hover{color:var(--sage)}
    <h2 class="title">Let's grow something good together.</h2>
    <p>Questions, bulk orders for nurseries, or partnership ideas? Send us a note.</p>
    <a class="mail" href="mailto:hello@ecopot.example">hello@ecopot.example</a>
+   <br>
+   <a class="mail" href="mailto:2405301090@geetauniversity.edu.in" style="margin-top:8px;display:inline-block">2405301090@geetauniversity.edu.in</a>
    <p style="font-size:.8rem;margin:6px 0 0">(Sample email. Replace with your real address.)</p>
    <div class="social">
     <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
@@ -465,15 +469,15 @@ function art(k){
 
 /* ---------- Products (sample prices in INR) ---------- */
 var products=[
- {id:1,name:"Mini Biodegradable Pots",desc:"Pack of 10 small pots, ideal for herbs, succulents and desk plants.",price:149,kind:"mini"},
- {id:2,name:"Medium Eco Pots",desc:"Pack of 5 sturdy pots for flowering plants and vegetables.",price:249,kind:"medium"},
- {id:3,name:"Premium Garden Pots",desc:"Large, durable, plant-fibre pots for shrubs and patio gardens.",price:449,kind:"premium"},
- {id:4,name:"Seed Starter Pots",desc:"Tray of 12 starter cells. Plant seedlings directly into soil.",price:199,kind:"seed"}
+ {id:1,name:"Mini Biodegradable Pots",desc:"Pack of 10 small pots, ideal for herbs, succulents and desk plants.",price:149,kind:"mini",img:"img-mini.png"},
+ {id:2,name:"Medium Eco Pots",desc:"Pack of 5 sturdy pots for flowering plants and vegetables.",price:249,kind:"medium",img:"img-medium.png"},
+ {id:3,name:"Premium Garden Pots",desc:"Large, durable, plant-fibre pots for shrubs and patio gardens.",price:449,kind:"premium",img:"img-premium.png"},
+ {id:4,name:"Seed Starter Pots",desc:"Tray of 12 starter cells. Plant seedlings directly into soil.",price:199,kind:"seed",img:"img-seed.png"}
 ];
 var money=function(n){return "\u20B9"+n.toLocaleString("en-IN")};
 $("#heroArt").innerHTML=art("premium");
 $("#productGrid").innerHTML=products.map(function(p){
- return '<article class="card reveal"><div class="img">'+art(p.kind)+'</div><div class="body"><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="price-row"><span class="price">'+money(p.price)+'</span><button class="add" data-id="'+p.id+'">Add to Cart</button></div></div></article>';
+ return '<article class="card reveal"><div class="img"><img src="'+p.img+'" alt="'+p.name+'" loading="lazy"></div><div class="body"><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="price-row"><span class="price">'+money(p.price)+'</span><button class="add" data-id="'+p.id+'">Add to Cart</button></div></div></article>';
 }).join("");
 
 /* ---------- Cart ---------- */
